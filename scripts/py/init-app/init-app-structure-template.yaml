@@ -1,0 +1,19 @@
+backend:
+  src/main/java/{{ app.package | toFolder }}: null
+  src/main/resources: null
+  src/test/java/{{ app.package | toFolder }}: null
+  pom.xml: backend_pom.xml
+  README.md: backend_readme.md
+frontend:
+  src: null
+  public: null
+  package.json: frontend_package.json
+  README.md: frontend_readme.md
+mobile:
+  src: null
+  package.json: mobile_package.json
+  README.md: mobile_readme.md
+docs: null
+# .gitignore: gitignore
+# README.md: main_readme.md
+docker-compose.yml: docker-compose.yml

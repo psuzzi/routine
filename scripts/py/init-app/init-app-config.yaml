@@ -1,0 +1,15 @@
+# project initialization configuration
+init:
+    # base directory of the project
+    basedir: ../../../
+    # directory where the templates are stored
+    templates: ./templates
+    # file representing the project structure
+    structure: ./init-app-structure-template.yaml
+
+# application details
+app: 
+    title: Routine App
+    name: routine
+    group: dev.algo
+    package: dev.algo.routine
