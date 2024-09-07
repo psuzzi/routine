@@ -8,6 +8,10 @@ from jinja2 import Environment, FileSystemLoader, Template
 # Config constants
 CONFIG_FILE_PATH = 'init-app-config.yaml'
 
+def resolve_path(path):
+    """Resolve path relative to the script's location."""
+    return Path(__file__).parent.resolve() / path
+
 def render_template(template_str, data, env):
     """Render a Jinja2 template string with given data."""
     template = env.from_string(template_str)
@@ -84,9 +88,14 @@ def main():
     args = parser.parse_args()
 
     # Load YAML configuration
-    config_path = Path(__file__).parent / args.config
+    config_path = resolve_path(args.config)
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
+
+    # Resolve paths in config
+    config['init']['basedir'] = resolve_path(config['init']['basedir'])
+    config['init']['templates'] = resolve_path(config['init']['templates'])
+    config['init']['structure'] = resolve_path(config['init']['structure'])
     
     # Setup Jinja2 environment and filters
     env = Environment(loader=FileSystemLoader(config['init']['templates']))

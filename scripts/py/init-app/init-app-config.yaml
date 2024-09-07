@@ -1,7 +1,7 @@
 # project initialization configuration
 init:
     # base directory of the project
-    basedir: ../../../
+    basedir: ../../../target
     # directory where the templates are stored
     templates: ./templates
     # file representing the project structure
