@@ -1,0 +1,52 @@
+package {{ project.package }}.controller;
+
+import {{ project.package }}.model.{{ project.entity.name }};
+import {{ project.package }}.model.User;
+import {{ project.package }}.service.{{ project.entity.name }}Service;
+import {{ project.package }}.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/{{ project.entity.name|lower }}s")
+public class {{ project.entity.name }}Controller {
+    @Autowired
+    private {{ project.entity.name }}Service {{ project.entity.name|lower }}Service;
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping
+    public ResponseEntity<{{ project.entity.name }}> create{{ project.entity.name }}(@RequestBody {{ project.entity.name }} {{ project.entity.name|lower }}, Authentication authentication) {
+        User user = userService.findByUsername(authentication.getName());
+        {{ project.entity.name|lower }}.setUser(user);
+        {{ project.entity.name }} created{{ project.entity.name }} = {{ project.entity.name|lower }}Service.create{{ project.entity.name }}({{ project.entity.name|lower }});
+        return ResponseEntity.ok(created{{ project.entity.name }});
+    }
+
+    @GetMapping
+    public ResponseEntity<List<{{ project.entity.name }}>> get{{ project.entity.name }}s(Authentication authentication) {
+        User user = userService.findByUsername(authentication.getName());
+        List<{{ project.entity.name }}> {{ project.entity.name|lower }}s = {{ project.entity.name|lower }}Service.get{{ project.entity.name }}sForUser(user);
+        return ResponseEntity.ok({{ project.entity.name|lower }}s);
+    }
+
+    @PutMapping("/{% raw %}{{% endraw %}{{ project.entity.name|lower }}Id}")
+    public ResponseEntity<{{ project.entity.name }}> update{{ project.entity.name }}(@PathVariable Long {{ project.entity.name|lower }}Id, @RequestBody {{ project.entity.name }} {{ project.entity.name|lower }}, Authentication authentication) {
+        User user = userService.findByUsername(authentication.getName());
+        {{ project.entity.name|lower }}.setId({{ project.entity.name|lower }}Id);
+        {{ project.entity.name|lower }}.setUser(user);
+        {{ project.entity.name }} updated{{ project.entity.name }} = {{ project.entity.name|lower }}Service.update{{ project.entity.name }}({{ project.entity.name|lower }});
+        return ResponseEntity.ok(updated{{ project.entity.name }});
+    }
+
+    @DeleteMapping("/{% raw %}{{% endraw %}{{ project.entity.name|lower }}Id}")
+    public ResponseEntity<Void> delete{{ project.entity.name }}(@PathVariable Long {{ project.entity.name|lower }}Id) {
+        {{ project.entity.name|lower }}Service.delete{{ project.entity.name }}({{ project.entity.name|lower }}Id);
+        return ResponseEntity.ok().build();
+    }
+}

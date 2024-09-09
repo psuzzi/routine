@@ -1,0 +1,31 @@
+package {{ project.package }}.service;
+
+import {{ project.package }}.model.{{ project.entity.name }};
+import {{ project.package }}.model.User;
+import {{ project.package }}.repository.{{ project.entity.name }}Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class {{ project.entity.name }}Service {
+    @Autowired
+    private {{ project.entity.name }}Repository {{ project.entity.name|lower }}Repository;
+
+    public {{ project.entity.name }} create{{ project.entity.name }}({{ project.entity.name }} {{ project.entity.name|lower }}) {
+        return {{ project.entity.name|lower }}Repository.save({{ project.entity.name|lower }});
+    }
+
+    public List<{{ project.entity.name }}> get{{ project.entity.name }}sForUser(User user) {
+        return {{ project.entity.name|lower }}Repository.findByUser(user);
+    }
+
+    public {{ project.entity.name }} update{{ project.entity.name }}({{ project.entity.name }} {{ project.entity.name|lower }}) {
+        return {{ project.entity.name|lower }}Repository.save({{ project.entity.name|lower }});
+    }
+
+    public void delete{{ project.entity.name }}(Long {{ project.entity.name|lower }}Id) {
+        {{ project.entity.name|lower }}Repository.deleteById({{ project.entity.name|lower }}Id);
+    }
+}

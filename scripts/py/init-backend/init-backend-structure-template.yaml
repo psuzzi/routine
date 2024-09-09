@@ -1,0 +1,24 @@
+backend:
+  src:
+    main:
+      java/{{ app.package | toFolder }}:
+        model:
+          User.java: user_entity_template.java.jinja2
+          "{{ project.entity.name }}.java": entity_template.java.jinja2
+        repository:
+          UserRepository.java: user_repository_template.java.jinja2
+          "{{ project.entity.name }}Repository.java": entity_repository_template.java.jinja2
+        service:
+          UserService.java: user_service_template.java.jinja2
+          "{{ project.entity.name }}Service.java": entity_service_template.java.jinja2
+        controller:
+          UserController.java: user_controller_template.java.jinja2
+          "{{ project.entity.name }}Controller.java": entity_controller_template.java.jinja2
+        config:
+          SecurityConfig.java: security_config_template.java.jinja2
+          CustomUserDetailsService.java: custom_user_details_service_template.java.jinja2
+      resources:
+        application.properties: application_properties_template.properties.jinja2
+        application-dev.properties: application_dev_properties_template.properties.jinja2
+#  pom.xml: backend_pom.xml.jinja2
+  Implementation.md: document_template.md.jinja2

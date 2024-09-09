@@ -13,7 +13,7 @@ mobile:
   src: null
   package.json: mobile_package.json
   README.md: mobile_readme.md
-docs: null
+#docs: null
 # .gitignore: gitignore
 # README.md: main_readme.md
 docker-compose.yml: docker-compose.yml

@@ -1,0 +1,42 @@
+# project initialization configuration
+init:
+    basedir: ../../../target
+    templates: ./templates
+    structure: ./init-backend-structure-template.yaml
+
+# application details
+app:
+    title: Routine App
+    name: routine
+    group: dev.algo
+    package: dev.algo.routine
+
+project:
+  name: "Routine App"
+  title: "Routine Management Application"
+  description: "A Spring Boot application for managing daily routines and tasks"
+  group: "dev.algo"
+  package: "dev.algo.routine"
+  version: "0.0.1-SNAPSHOT"
+  # entity details
+  entity:
+      name: Task
+      fields:
+          - name: title
+            type: String
+            nullable: false
+          - name: description
+            type: String
+            nullable: true
+          - name: dueDate
+            type: LocalDateTime
+            nullable: false
+          - name: completed
+            type: boolean
+            nullable: false
+  # database details
+  database:
+    name: routine_app
+    host: localhost
+    port: 5432
+

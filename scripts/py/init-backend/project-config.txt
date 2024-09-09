@@ -1,0 +1,23 @@
+These are the minimal information needed to generate the base code
+project:
+  name: RoutineApp
+  package: com.yourcompany.routineapp
+  entity:
+    name: Task
+    fields:
+      - name: title
+        type: String
+        nullable: false
+      - name: description
+        type: String
+        nullable: true
+      - name: dueDate
+        type: LocalDateTime
+        nullable: false
+      - name: completed
+        type: boolean
+        nullable: false
+  database:
+    name: routine_app
+    host: localhost
+    port: 5432
