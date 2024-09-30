@@ -3,7 +3,6 @@ package dev.algo.routine.backend.service;
 import dev.algo.routine.backend.model.Task;
 import dev.algo.routine.backend.model.User;
 import dev.algo.routine.backend.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,17 +10,15 @@ import java.util.List;
 @Service
 public class TaskService {
 
-    @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
+
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     public Task createTask(Task task) {
-//        TODO: a deeper check might be needed
-//        if (task.getUser() == null){
-//            throw new IllegalArgumentException("Task must be associated with a user");
-//        }
-//        if (task.getDeadline()==null){
-//            task.setDeadline(LocalDateTime.now().plusDays(1));//default due date tomorrow
-//        }
+        // Note: you might want to check the task is associated to an user,
+        // or you might want to set a default deadline if the task does not have one
         return taskRepository.save(task);
     }
 

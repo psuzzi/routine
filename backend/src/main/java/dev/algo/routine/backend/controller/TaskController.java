@@ -4,7 +4,6 @@ import dev.algo.routine.backend.model.Task;
 import dev.algo.routine.backend.model.User;
 import dev.algo.routine.backend.service.TaskService;
 import dev.algo.routine.backend.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +13,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-    @Autowired
-    private TaskService taskService;
 
-    @Autowired
-    private UserService userService;
+    private final TaskService taskService;
+    private final UserService userService;
+
+    public TaskController(TaskService taskService, UserService userService) {
+        this.taskService = taskService;
+        this.userService = userService;
+    }
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task, Authentication authentication) {
