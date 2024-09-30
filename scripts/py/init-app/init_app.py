@@ -1,4 +1,4 @@
-# File: init-app/init-app.py
+# File: init-backend/init-backend.py
 
 import sys
 from pathlib import Path
@@ -12,7 +12,8 @@ from utils.project_initializer import ProjectInitializer
 CONFIG_FILE_PATH = 'init-app-config.yaml'
 
 def main():
-    initializer = ProjectInitializer(__file__, CONFIG_FILE_PATH, "Manage project structure")
+
+    initializer = ProjectInitializer(Path(__file__).resolve().parent, CONFIG_FILE_PATH, "Manage project structure")
     initializer.run()
 
 if __name__ == "__main__":

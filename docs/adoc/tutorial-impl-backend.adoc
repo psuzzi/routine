@@ -1,0 +1,54 @@
+:source-highlighter: pygments
+
+= Routine App Tutorial Stage 1: Initial Prototype (Monolithic)
+Authon Name psuzzi
+
+This document outlines the structure and implementation of the dev.algo.routine full-stack application.
+Specifically, this document is a tutorial on how to build the initial monolithic application.
+
+== Backend Setup
+
+=== 1.1 Set up Spring Boot project
+
+Create an initial project
+
+1. Configure from web https://start.spring.io/.
+2. Specifically, use this https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.3.3&packaging=jar&jvmVersion=17&groupId=dev.algo.routine&artifactId=backend&name=backend&description=Routine%20App%20Backend&packageName=dev.algo.routine.backend&dependencies=web,data-jpa,postgresql,security,lombok[predefined configuration] using java 17 and maven, adding web, data-jpa, postgresql, security, and lombok dependencies.
+3. Generate, download, unzip
+4. Import the project in your IDEA Import: Project properties > Import module
+
+=== 1.2 Configure PostgreSQL database
+
+Setting up a robust database is crucial for the application.
+Set up PostgreSQL, a powerful open-source relational database system.
+
+1. Install PostgreSQL if not already installed
+2. Create a new database named `routine_db`
+3. Open the `src/main/resources/application.properties` and add the db connection details
++
+--
+[source,properties]
+----
+# DB connection
+spring.datasource.url=jdbc:postgresql://localhost:5432/routine_db
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql=true
+# The following line is for using Spring Profiles
+spring.profiles.active=dev
+----
+--
+4. Create a file `application-dev.properties` to store db user and password
++
+--
+[source, properties]
+----
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+----
+--
+Note:
+
+- You should gitignore the `dev.properties`.
+- In a production environment, consider using environment variables or a secure vault for sensitive information.
