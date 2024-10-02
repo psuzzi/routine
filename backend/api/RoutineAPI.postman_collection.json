@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "328db102-07e8-4535-b069-b89459b69ba2",
+		"name": "RoutineAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1149054"
+	},
+	"item": [
+		{
+			"name": "RegisterTestUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"testpassword\",\n  \"email\": \"testuser@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

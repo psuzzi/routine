@@ -1,0 +1,93 @@
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+\usepackage{fvextra}
+\usepackage{framed}
+
+% Define colors
+\definecolor{shadecolor}{RGB}{245,245,245}
+\definecolor{framecolor}{RGB}{128,128,128}
+\definecolor{codetextcolor}{RGB}{25,25,25}
+\definecolor{light-gray}{RGB}{245,245,245}
+\definecolor{dark-gray}{RGB}{64,64,64}
+
+% Remove line break symbol and set break anywhere
+\fvset{
+    breaklines=true,
+%     breakanywhere=true,
+    breaksymbolleft={} % comment to remove break symbol
+}
+
+% Set up listings for syntax highlighting
+\lstset{
+    basicstyle=\ttfamily\small,
+%     backgroundcolor=\color{light-gray},% bg color listings
+    backgroundcolor=\color{shadecolor},
+    breaklines=true,
+    breakatwhitespace=true,
+    columns=flexible,
+    keepspaces=true,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=none,
+    xleftmargin=0pt,
+    xrightmargin=0pt,
+    aboveskip=0pt,
+    belowskip=0pt,
+    numbers=none,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black}\itshape,
+    stringstyle=\color{purple},
+}
+
+% Adjust section styling
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% Adjust list styling
+\setlist[enumerate]{leftmargin=*,align=left,widest=99}
+
+% Setup page headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[R]{\thepage}
+
+% Define tcolorbox settings for code blocks
+\tcbuselibrary{listings,skins}
+\newtcolorbox{roundedcodebox}{
+    arc=5pt,
+    outer arc=5pt,
+%     colback=light-gray,
+%     colframe=dark-gray,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt,
+    listing only,
+    listing options={basicstyle=\ttfamily\small},
+}
+
+% Define the Shaded environment if it doesn't exist
+\ifcsundef{Shaded}{%
+  \newenvironment{Shaded}{}{}
+}{}
+
+% Now redefine the Shaded environment
+\renewenvironment{Shaded}
+  {\begin{roundedcodebox}}
+  {\end{roundedcodebox}}
+
+% Set default fonts
+\setmainfont{Times New Roman}
+% Set monospace font for code blocks
+\setmonofont[Scale=0.85]{Fira Code}

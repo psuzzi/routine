@@ -1,0 +1,116 @@
+# {{ project.name }} - Spring Boot Application
+
+This document outlines the structure and implementation of the {{ project.name }} application using Spring Boot.
+
+## 1. Project Configuration
+
+### 1.1 Database Configuration
+
+The application uses PostgreSQL as its database. Here's how to set it up:
+
+1. Install PostgreSQL if not already installed
+2. Create a new database named `{{ project.database.name }}`
+3. Open `src/main/resources/application.properties` and add:
+
+```properties
+spring.datasource.url=jdbc:postgresql://{{ project.database.host }}:{{ project.database.port }}/{{ project.database.name }}
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+```
+
+For local development, create an `application-local.properties` file (make sure to gitignore it):
+
+```properties
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+```
+
+## 2. Implementing the Application
+
+### 2.1 Entity Classes
+
+#### User Entity
+
+```java
+{{ user_entity_content }}
+```
+
+#### {{ project.entity.name }} Entity
+
+```java
+{{ entity_content }}
+```
+
+### 2.2 Repositories
+
+#### UserRepository
+
+```java
+{{ user_repository_content }}
+```
+
+#### {{ project.entity.name }}Repository
+
+```java
+{{ entity_repository_content }}
+```
+
+### 2.3 Services
+
+#### UserService
+
+```java
+{{ user_service_content }}
+```
+
+#### {{ project.entity.name }}Service
+
+```java
+{{ entity_service_content }}
+```
+
+### 2.4 Controllers
+
+#### UserController
+
+```java
+{{ user_controller_content }}
+```
+
+#### {{ project.entity.name }}Controller
+
+```java
+{{ entity_controller_content }}
+```
+
+### 2.5 Security Configuration
+
+#### SecurityConfig
+
+```java
+{{ security_config_content }}
+```
+
+#### CustomUserDetailsService
+
+```java
+{{ custom_user_details_service_content }}
+```
+
+## 3. Running the Application
+
+To run the application:
+
+1. Ensure PostgreSQL is running and the database is created
+2. Run the Spring Boot application
+3. The API will be available at `http://localhost:8080`
+
+## 4. API Endpoints
+
+- POST `/api/users/register`: Register a new user
+- POST `/api/{{ project.entity.name|lower }}s`: Create a new {{ project.entity.name|lower }}
+- GET `/api/{{ project.entity.name|lower }}s`: Get all {{ project.entity.name|lower }}s for the authenticated user
+- PUT `/api/{{ project.entity.name|lower }}s/{id}`: Update a {{ project.entity.name|lower }}
+- DELETE `/api/{{ project.entity.name|lower }}s/{id}`: Delete a {{ project.entity.name|lower }}
+
+Remember to implement proper error handling, validation, and testing for a production-ready application.

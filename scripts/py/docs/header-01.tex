@@ -1,0 +1,45 @@
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+\usepackage{fvextra}
+\usepackage{framed}
+
+% Define colors
+\definecolor{shadecolor}{RGB}{245,245,245}
+\definecolor{framecolor}{RGB}{128,128,128}
+\definecolor{codetextcolor}{RGB}{25,25,25}
+\definecolor{light-gray}{RGB}{245,245,245}
+\definecolor{dark-gray}{RGB}{64,64,64}
+
+
+% Remove line break symbol and set break anywhere
+\fvset{
+    breaklines=true,
+    breakanywhere=true,
+    breaksymbolleft={} % comment to remove break symbol
+}
+
+
+% Create a custom framed environment for code blocks
+\newenvironment{customcodebox}
+ {\begin{framed}
+  \colorlet{shadecolor}{shadecolor}
+  \colorlet{framecolor}{framecolor}}
+ {\end{framed}}
+
+% Redefine the Verbatim environment to use our custom box
+\let\oldverbatim\verbatim
+\let\endoldverbatim\endverbatim
+\renewenvironment{Verbatim}
+ {\begin{customcodebox}\oldverbatim}
+ {\endoldverbatim\end{customcodebox}}
+
+% Set default fonts: Georgia, SF Pro, Palatino, Roboto, Libre Baskerville
+\setmainfont[Scale=1]{SF Pro}
+ % Set monospace font for code blocks: Menlo, Fira Code, Consolas, Source Code Pro, Inconsolata
+ \setmonofont[Scale=0.85]{Fira Code}

@@ -2,10 +2,17 @@
 
 Set of python scripts to manage the application
 
-## Run Init
+## Template Generation
+
+App
 
 ```bash
 python3 init-app/init-app.py
+```
+
+Backend
+```bash
+python3 init-backend/init-backend.py
 ```
 
 ## Venv Setup

@@ -1,0 +1,23 @@
+package {{ project.package }}.model;
+
+import lombok.Data;
+import javax.persistence.*;
+import java.time.*;
+
+@Data
+@Entity
+@Table(name = "{{ project.entity.name|lower }}s")
+public class {{ project.entity.name }} {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    {% for field in project.entity.fields %}
+    @Column({% if not field.nullable %}nullable = false{% endif %})
+    private {{ field.type }} {{ field.name }};
+    {% endfor %}
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+}

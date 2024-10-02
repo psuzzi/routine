@@ -1,0 +1,11 @@
+package {{ project.package }}.repository;
+
+import {{ project.package }}.model.{{ project.entity.name }};
+import {{ project.package }}.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface {{ project.entity.name }}Repository extends JpaRepository<{{ project.entity.name }}, Long> {
+    List<{{ project.entity.name }}> findByUser(User user);
+}
